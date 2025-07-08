@@ -13,14 +13,14 @@ easy to use and deploy to servers.
 
 **Required**
 
-- Ruby (at least v2.6.10)
+- Ruby (at least v3.1.0)
 
-Start by cloning this repository with `git clone` anywhere you'd like.
-You can also set up a symbolic link to your bin directory to allow
-execution from anywhere:
+Start by cloning this repository with `git clone`, then run the following:
 
 ```
-ln -s /path/to/airport/airport.rb /path/to/bin/airport
+gem install bundler
+bundle install
+rake install
 ```
 
 Then, in your Paper server directory, run `airport init`. A new termspec
