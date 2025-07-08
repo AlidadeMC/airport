@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "airport/network" 
+require_relative "network" 
 
 module Airport
   # A basic package available on Paper's Hangar plugin system.

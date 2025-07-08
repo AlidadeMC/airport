@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'fileutils'
-require_relative 'airport/paperpkg'
+require_relative 'paperpkg'
 
 module Airport
   # Foobar

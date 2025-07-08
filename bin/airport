@@ -11,8 +11,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 require 'optparse'
-require './onboarding'
-require './terminal'
+require 'airport/onboarding'
+require 'airport/terminal'
 
 options = {}
 OptionParser.new do |opts|
@@ -25,7 +25,7 @@ end.parse!
 command, = ARGV
 
 if command.nil? || command == ''
-  puts 'Error: Specify a command.'
+  puts 'Error: Specify a command (init|install|update).'
   return
 end
 
