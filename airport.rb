@@ -1,0 +1,59 @@
+#!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
+# Airport
+# (C) Marquis Kurt 2025.
+# A basic PaperMC plugin updater.
+
+require 'optparse'
+require './onboarding'
+require './terminal'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = 'Usage: airport.rb <init|install|update> [options]'
+  opts.on('-f=FILE', '--file=FILE', 'Specify a termspec to use') do |v|
+    options[:file] = v
+  end
+end.parse!
+
+command, = ARGV
+
+if command.nil? || command == ''
+  puts 'Error: Specify a command.'
+  return
+end
+
+filepath = '.termspec'
+filepath = options[:file] unless options[:file].nil?
+
+if command == 'init'
+  write_template(filepath)
+  puts 'Termspec created at .termspec.'
+  return
+end
+
+terminal_gate = nil
+File.open(filepath, 'r') do |file|
+  terminal_gate = instance_eval(file.read)
+end
+
+if terminal_gate.nil?
+  puts "Err: Airport couldn't load the configuration. Abort."
+  return
+end
+
+terminal = Airport::Terminal.new(terminal_gate)
+
+case command
+when 'install'
+  puts 'Installing all plugins...'
+  terminal.install_plugins
+when 'update'
+  puts 'Updating current plugins...'
+  terminal.update_plugins
+  puts 'Plugin updates are ready for installation. Restart your Paper server to apply changes.'
+else
+  puts "Err: Invalid command #{command}."
+end

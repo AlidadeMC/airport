@@ -1,0 +1,10 @@
+Airport::TerminalGate.new do
+  # Define where your Paper installation is.
+  paper '/opt/paper'
+
+  # Define the plugins you want to install, optionally with a pinned version.
+  plugin 'geyser'
+  plugin 'floodgate'
+  plugin 'viaversion'
+  plugin 'gsit', '2.4.2'
+end
