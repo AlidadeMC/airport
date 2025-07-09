@@ -53,6 +53,8 @@ end
 
 - **init**: Creates a new termspec file at the path you specify.
 - **install**: Installs plugins defined in the termspec.
+- **refresh**: Installs plugins defined in the termspec, skipping any
+  plugins that are already installed (great for just adding new plugins).
 - **update**: Downloads the latest versions of plugins from Hangar and
   places them in the `plugins/update` folder.
   

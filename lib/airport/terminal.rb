@@ -53,6 +53,16 @@ module Airport
       end
     end
 
+    def refresh_plugins
+      unless path_exists?
+        warn 'Skipping plugin refresh because the Paper path is missing.'
+        return
+      end
+      @gate.plugins.each do |plugin|
+        install_plugin(plugin, 'plugins', skip_installed: true)
+      end
+    end
+
     def update_plugins
       unless path_exists?
         warn 'Skipping plugin update because the Paper path is missing.'
@@ -64,12 +74,14 @@ module Airport
       end
     end
 
-    def install_plugin(plugin, subpath = 'plugins')
+    def install_plugin(plugin, subpath = 'plugins', skip_installed: false)
       pkg = Airport::PaperPackage.new(
         plugin.name,
         "#{@gate.paper_path}/#{subpath}/#{plugin.name}.jar",
         plugin.version
       )
+      return if pkg.installed? && skip_installed
+
       pkg.fetch
     end
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "network" 
+require_relative "network"
 
 module Airport
   # A basic package available on Paper's Hangar plugin system.
@@ -25,6 +25,10 @@ module Airport
 
       response = @service.request "/projects/#{@name}/latestrelease"
       response.body unless response.is_a?(Net::HTTPError)
+    end
+
+    def installed?
+      File.exist? @filepath
     end
 
     def fetch(ver = nil)

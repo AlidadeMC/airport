@@ -25,7 +25,7 @@ end.parse!
 command, = ARGV
 
 if command.nil? || command == ''
-  puts 'Error: Specify a command (init|install|update).'
+  puts 'Error: Specify a command (init|install|refresh|update).'
   return
 end
 
@@ -54,6 +54,9 @@ case command
 when 'install'
   puts 'Installing all plugins...'
   terminal.install_plugins
+when 'refresh'
+  puts 'Refreshing current plugins...'
+  terminal.refresh_plugins
 when 'update'
   puts 'Updating current plugins...'
   terminal.update_plugins
