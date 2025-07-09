@@ -12,6 +12,7 @@ TEMPLATE = <<~TEMPLATE
   end
 TEMPLATE
 
+# Creates a template termspec file at the specified file path.
 def write_template(path = '.termspec')
   File.open(path, 'w') do |file|
     file.write TEMPLATE

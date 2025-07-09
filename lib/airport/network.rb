@@ -22,6 +22,10 @@ module Airport
       _rq(rq_url, @request_limit)
     end
 
+    # MARK: Private
+
+    private
+
     def _rq(url, limit = 10)
       raise TooManyRedirects if limit.negative?
 

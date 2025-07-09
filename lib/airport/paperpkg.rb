@@ -20,6 +20,11 @@ module Airport
       @service = Airport::Hangar.new
     end
 
+    # Reports the package's current version.
+    #
+    # If a pinned version is specified, it will return this value first.
+    # Otherwise, the latest version will be fetched from Hangar, provided
+    # the package exists in Hangar.
     def version
       return @pinned unless @pinned.nil?
 
@@ -27,10 +32,12 @@ module Airport
       response.body unless response.is_a?(Net::HTTPError)
     end
 
+    # Whether the plugin package is currently installed on the server.
     def installed?
       File.exist? @filepath
     end
 
+    # Fetches the package from Hangar and installs it at the specified filepath.
     def fetch(ver = nil)
       ver_to_download = ver.nil? ? version : ver
       raise NoPackageVersionFound if ver_to_download.nil?
