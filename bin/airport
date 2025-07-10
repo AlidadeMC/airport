@@ -12,6 +12,8 @@
 
 require 'optparse'
 require 'airport'
+require 'airport/terminal'
+require 'airport/onboarding'
 
 HELP_TEXT = 'Usage: airport <init|install|refresh|update|version|help> [options]'
 
